@@ -2,7 +2,10 @@ package de.materna.candyLord.Enums;
 
 public enum CandyEnum {
     CHOCLATE(10, 100),
-    CAKE(5, 20);
+    SALTEDCARMEL(8,0),
+    CINNAMONROLL(7, 0),
+    GUMMYSNAKES(4, 0),
+    JELLYBEANS(2,0);
 
     @Override
     public String toString() {

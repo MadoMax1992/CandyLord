@@ -11,6 +11,7 @@ public class Mugging extends Event {
     @Override
     public void process(Player player) {
         Candy candyOfPlayer = player.pickRandomCandy();
+        player.setCapacity(player.getCapacity() - candyOfPlayer.getAmount());
         candyOfPlayer.setAmount(0);
         System.err.println("You Lost all of your " + candyOfPlayer.getName()+"!");
     }

@@ -14,6 +14,7 @@ public class Gift extends Event {
         Candy candyOfPlayer = player.pickRandomCandy();
         int randomAmount = ThreadLocalRandom.current().nextInt( 1, GameManager.randomGiftMaxAmmmount);
         candyOfPlayer.setAmount(candyOfPlayer.getAmount() + randomAmount);
+        player.setCapacity(player.getCapacity() + randomAmount);
         System.err.println("You Found "+ randomAmount + " " + candyOfPlayer.getName() +"!");
 
         //TODO Check Carrying Capacity

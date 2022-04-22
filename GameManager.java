@@ -1,5 +1,6 @@
 package de.materna.candyLord;
 
+import de.materna.candyLord.Enums.CityEnum;
 import de.materna.candyLord.event.Event;
 
 import java.util.ArrayList;
@@ -9,12 +10,14 @@ import java.util.Scanner;
 public class GameManager {
     static boolean isOver = false;
     static int round = 0;
-    static final int pricePerDistance = 5;
+    static final int maxRounds = 30;
+    static final int pricePerDistance = 2;
     static Scanner scanner = new Scanner(System.in);
-    static final int playerMaxCapacity = 100;
-    static final int playerMoney = 100000;
+    static final int playerMaxCapacity = 10;
+    static final int playerMoney = 100;
     static final int playerHealth = 100;
-    static final double priceShuffelFactor = 0.2;
+    static final double priceShuffelFactor = 0.1;
+    static final CityEnum startCity = CityEnum.BREMEN;
 
     public static final int randomGiftMaxAmmmount = 5;
     public static final double eventGiftProbability = 0.5;
@@ -26,7 +29,7 @@ public class GameManager {
 
     public static void main(String[] args) {
         ArrayList<City> cities = City.createCities();
-        Player player = Player.createPlayer(cities.get(0));
+        Player player = Player.createPlayer(cities.get(startCity.ordinal()));
 
         //TODO Stringbuilder Klasse nutzen
 
@@ -45,7 +48,7 @@ public class GameManager {
 
 
             round++;
-            if (round == 30) {
+            if (round == maxRounds) {
                 isOver = true;
                 System.out.println("Das Spiel ist vorbei!\nDu hast" +player.getMoney()+"€ verdient.");
             }
@@ -87,7 +90,7 @@ public class GameManager {
 
     private static void printGameState(Player player) {
 
-        System.out.println("Round: " + round);
+        System.out.println("\n\nRound: " + round +"/"+maxRounds);
         System.out.println("Location: " + player.getCity().getName());
         System.out.println("Money: " + player.getMoney() + " €");
         System.out.println("Capactity: " + player.getCapacity() + "/" + GameManager.playerMaxCapacity + "\n");
