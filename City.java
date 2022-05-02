@@ -19,7 +19,7 @@ public class City {
 
 
     public static int calcTravelCost(City fromCity, City toCity) {
-        return (int) (GameManager.pricePerDistance * Math.abs(fromCity.getLocation().distance(toCity.getLocation())));
+        return (int) (GameManager.PRICE_PER_DISTANCE * Math.abs(fromCity.getLocation().distance(toCity.getLocation())));
     }
 
     @Override

@@ -1,12 +1,11 @@
 package de.materna.candyLord;
 
-import java.util.List;
-
 public class Candy {
     String name;
     int price;
     int amount;
 
+    //TODO prüfen das preis und menge nicht negativ sein kann
     @Override
     public String toString() {
         return "Candy{" +
@@ -47,6 +46,6 @@ public class Candy {
     }
 
     public void shuffelprice() {
-        this.setPrice((int) (this.getPrice()*(Math.random()+GameManager.priceShuffelFactor)));
+        this.setPrice((int) (this.getPrice() * (Math.random() + GameManager.PRICE_SHUFFEL_FACTOR)));
     }
 }

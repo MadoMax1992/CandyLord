@@ -29,7 +29,7 @@ public class Player {
         for (CandyEnum candy : CandyEnum.values()) {
             playerCandy.add(new Candy(candy.name(), candy.getBasePrice(), 0));
         }
-        return new Player(GameManager.playerMoney, GameManager.playerHealth, playerCandy, startCity, 0);
+        return new Player(GameManager.PLAYER_MONEY, GameManager.PLAYER_HEALTH, playerCandy, startCity, 0);
     }
 
     public int getMoney() {
@@ -93,7 +93,7 @@ public class Player {
     public boolean isBuyPossible(Candy choosenCandy, int amount) {
         int transactionCost = choosenCandy.getPrice() * amount;
 
-        if (GameManager.playerMaxCapacity < (amount + this.getCapacity()))
+        if (GameManager.PLAYER_MAX_CAPACITY < (amount + this.getCapacity()))
             return false;
         if (transactionCost > this.getMoney())
             return false;

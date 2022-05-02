@@ -3,28 +3,28 @@ package de.materna.candyLord;
 import de.materna.candyLord.Enums.CityEnum;
 import de.materna.candyLord.event.Event;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class GameManager {
     static boolean isOver = false;
     static int round = 0;
-    static final int maxRounds = 30;
-    static final int pricePerDistance = 2;
+    static final int MAX_ROUNDS = 30;
+    static final int PRICE_PER_DISTANCE = 2;
     static Scanner scanner = new Scanner(System.in);
-    static final int playerMaxCapacity = 10;
-    static final int playerMoney = 100;
-    static final int playerHealth = 100;
-    static final double priceShuffelFactor = 0.1;
+    static final int PLAYER_MAX_CAPACITY = 10;
+    static final int PLAYER_MONEY = 100;
+    static final int PLAYER_HEALTH = 100;
+    static final double PRICE_SHUFFEL_FACTOR = 0.1;
     static final CityEnum startCity = CityEnum.BREMEN;
 
-    public static final int randomGiftMaxAmmmount = 5;
-    public static final double eventGiftProbability = 0.5;
-    public static final double eventMuggProbability = 0.1;
-    public static final double eventNoopProbability = 0.2;
-
-
+    public static final int RANDOM_GIFT_MAX_AMMMOUNT = 5;
+    public static final double EVENT_GIFT_PROBABILITY = 0.5;
+    public static final double EVENT_MUG_PROBABILITY = 0.1;
+    public static final double EVENT_NOOP_PROBABILITY = 0.2;
 
 
     public static void main(String[] args) {
@@ -48,9 +48,9 @@ public class GameManager {
 
 
             round++;
-            if (round == maxRounds) {
+            if (round == MAX_ROUNDS) {
                 isOver = true;
-                System.out.println("Das Spiel ist vorbei!\nDu hast" +player.getMoney()+"€ verdient.");
+                System.out.println("Das Spiel ist vorbei!\nDu hast" + player.getMoney() + "€ verdient.");
             }
         }
 
@@ -90,10 +90,10 @@ public class GameManager {
 
     private static void printGameState(Player player) {
 
-        System.out.println("\n\nRound: " + round +"/"+maxRounds);
+        System.out.println("\n\nRound: " + round + "/" + MAX_ROUNDS);
         System.out.println("Location: " + player.getCity().getName());
         System.out.println("Money: " + player.getMoney() + " €");
-        System.out.println("Capactity: " + player.getCapacity() + "/" + GameManager.playerMaxCapacity + "\n");
+        System.out.println("Capactity: " + player.getCapacity() + "/" + GameManager.PLAYER_MAX_CAPACITY + "\n");
         System.out.println("Candies on Hand :" + toStringForPlayer(player.candyList));
         System.out.println("Candies in City :" + toStringForCity(player.getCity().getCandies()));
 
@@ -151,12 +151,28 @@ public class GameManager {
     }
 
     private static int getUserInputAsInt() {
-        return scanner.nextInt();
+        Scanner intScannner = new Scanner(System.in);
+        try {
+            return intScannner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Input is not valid!\nTry again");
+            return getUserInputAsInt();
+        }
+
 
     }
 
+    //TODO Tabs beim Output gehen manchaml kaputt
+
     private static char getUserInputAsChar() {
-        return scanner.next().trim().toUpperCase().charAt(0);
+        Scanner charScannner = new Scanner(System.in);
+        try {
+            return charScannner.next().trim().toUpperCase().charAt(0);
+
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Input is not valid!\nTry again");
+            return getUserInputAsChar();
+        }
 
     }
 
