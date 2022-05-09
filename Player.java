@@ -111,7 +111,8 @@ public class Player {
 
 
     public boolean isTravelPossible(City toCity) {
-        int travelPrice = City.calcTravelCost(this.city, toCity);
+        ;
+        int travelPrice = this.city.calcTravelCostTo(toCity);
 
         if (travelPrice <= this.getMoney()) {
             this.city = toCity;

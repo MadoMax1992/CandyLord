@@ -3,7 +3,6 @@ package de.materna.candyLord;
 import de.materna.candyLord.Enums.CityEnum;
 import de.materna.candyLord.event.Event;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,7 +13,6 @@ public class GameManager {
     static int round = 0;
     static final int MAX_ROUNDS = 30;
     static final int PRICE_PER_DISTANCE = 2;
-    static Scanner scanner = new Scanner(System.in);
     static final int PLAYER_MAX_CAPACITY = 10;
     static final int PLAYER_MONEY = 100;
     static final int PLAYER_HEALTH = 100;
@@ -36,7 +34,7 @@ public class GameManager {
 
         while (!isOver) {
 
-            if (round!= 0){
+            if (round != 0) {
                 new Event().process(player);
             }
 
@@ -44,7 +42,6 @@ public class GameManager {
             printGameState(player);
 
             askPlayer(player, cities);
-
 
 
             round++;
@@ -144,7 +141,7 @@ public class GameManager {
 
         System.out.println("Where do you wanna go ?");
         for (City city : cities) {
-            System.out.println("[" + inputNumber + "]: " + "€" + City.calcTravelCost(player.getCity(), city) + " \t" + city.getName());
+            System.out.println("[" + inputNumber + "]: " + "€" + player.getCity().calcTravelCostTo(city) + " \t" + city.getName());
             inputNumber++;
         }
         travelPlayerToCity(player, cities.get(getUserInputAsInt()));
